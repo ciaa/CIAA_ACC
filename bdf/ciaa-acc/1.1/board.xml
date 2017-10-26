@@ -13,15 +13,18 @@
   <components>
     <component name="part0" display_name="CIAA ACC" type="fpga" part_name="xc7z030fbg676-2" pin_map_file="part0_pins.xml" vendor="xilinx" spec_url="https://www.xilinx.com/support/documentation/data_sheets/ds190-Zynq-7000-Overview.pdf">
       <description>FPGA part on the board</description>
+      <interfaces>
+        <interface mode="master" name="ps7_fixedio" type="xilinx.com:display_processing_system7:fixedio_rtl:1.0" of_component="ps7_fixedio" preset_proc="ps7_preset">
+        </interface>
+    </interfaces>
     </component>
+    <component name="ps7_fixedio" display_name="PS7 fixed IO" type="chip" sub_type="fixed_io" major_group=""/>
   </components>
-  <connections>
-  </connections>
-  <jumpers>
-  </jumpers>
   <jtag_chains>
     <jtag_chain name="chain1">
       <position name="0" component="part0"/>
     </jtag_chain>
   </jtag_chains>
+  <connections>
+  </connections>
 </board>
