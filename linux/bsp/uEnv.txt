@@ -1,0 +1,2 @@
+mmc_loadbit=echo Loading bitstream from SD/MMC/eMMC to RAM.. && mmcinfo && load mmc 0 ${loadbit_addr} fpga.bit && fpga loadb 0 ${loadbit_addr} ${filesize}
+sdboot=if mmcinfo; then run mmc_loadbit; echo Copying Linux from SD to RAM... && load mmc 0 ${kernel_load_address} ${kernel_image} && load mmc 0 ${devicetree_load_address} ${devicetree_image} && load mmc 0 ${ramdisk_load_address} ${ramdisk_image} && bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}; fi
