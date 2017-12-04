@@ -12,3 +12,25 @@ Thsi directory contains the Board Support Package for Linux over CIAA-ACC
   - bsp/uEnv.txt: U-Boot evironment (fpga and kernel load script)
   - bsp/zynq-ciaa_acc.dts: Devicetree for linux build
   - buildroot.patch: Buildroot 2017.08.1 patch (working with mainstream at 2017-12-01)
+
+### Compile buildroot
+  - Clone buildroot from oficial repo:
+```
+git clone https://github.com/buildroot/buildroot.git
+```
+  - Checkout right version:
+```
+git checkout 2017.08.1
+```
+  - Apply patch
+```
+git apply <path/to/buildroot.patch>
+```
+  - Configure, customize and make
+```
+make zynq_ciaa_acc_defconfig
+make menuconfig
+make
+```
+
+The build process put all SDcard contents in `output/images/sd`. Copy this to a blank FAT32 SD and insert in microSD card slot from CIAA-ACC. Reboot.
