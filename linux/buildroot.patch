@@ -2120,12 +2120,12 @@ index 0000000..91fc032
 +# Allow blank password on dropbear ssh server
 +DROPBEAR_ARGS=-B
 +
-diff --git a/board/ciaa/acc/overlay_fs/etc/init.d/S45mount b/board/ciaa/acc/overlay_fs/etc/init.d/S45mount
+diff --git a/board/ciaa/acc/overlay_fs/etc/init.d/S35mount b/board/ciaa/acc/overlay_fs/etc/init.d/S35mount
 new file mode 100755
-index 0000000..68b5749
+index 0000000..0801bbe
 --- /dev/null
-+++ b/board/ciaa/acc/overlay_fs/etc/init.d/S45mount
-@@ -0,0 +1,38 @@
++++ b/board/ciaa/acc/overlay_fs/etc/init.d/S35mount
+@@ -0,0 +1,39 @@
 +#!/bin/sh
 +#
 +# Mount SD persistents points
@@ -2139,13 +2139,14 @@ index 0000000..68b5749
 +        mkdir -p /mnt/dropbear && rm -fr /etc/dropbear &&  mkdir -p /etc/dropbear &&
 +        mount --bind /mnt/dropbear /etc/dropbear
 +        if [ ! -e /etc/dropbear/dropbear_rsa_host_key ]; then
-+                echo Here 4
 +                dropbearkey -t rsa -f /var/rsa_key && mv /var/rsa_key /etc/dropbear/dropbear_rsa_host_key
 +        fi
 +        if [ ! -e /etc/dropbear/dropbear_dss_host_key ]; then
-+                echo Here 6
 +                dropbearkey -t dss -f /var/dss_key && mv /var/dss_key /etc/dropbear/dropbear_dss_host_key
 +        fi
++        test -f /mnt/network/interfaces &&
++        echo "Update network interfaces from SD" &&
++        cp /mnt/network/interfaces /etc/network/interfaces
 +        [ $? = 0 ] && echo "OK" || echo "FAIL"
 +        ;;
 +  stop)
@@ -2161,6 +2162,71 @@ index 0000000..68b5749
 +  *)
 +        echo "Usage: $0 {start|stop|restart}"
 +        exit 1
++esac
++
++exit $?
+diff --git a/board/ciaa/acc/overlay_fs/etc/init.d/S50dropbear b/board/ciaa/acc/overlay_fs/etc/init.d/S50dropbear
+new file mode 100755
+index 0000000..bd92d46
+--- /dev/null
++++ b/board/ciaa/acc/overlay_fs/etc/init.d/S50dropbear
+@@ -0,0 +1,59 @@
++#!/bin/sh
++#
++# Starts dropbear sshd.
++#
++
++# Allow a few customizations from a config file
++test -r /etc/default/dropbear && . /etc/default/dropbear
++
++start() {
++	# If /etc/dropbear is a symlink to /var/run/dropbear, and
++	#   - the filesystem is RO (i.e. we can not rm the symlink),
++	#     create the directory pointed to by the symlink.
++	#   - the filesystem is RW (i.e. we can rm the symlink),
++	#     replace the symlink with an actual directory
++	if [ -L /etc/dropbear \
++	     -a "$(readlink /etc/dropbear)" = "/var/run/dropbear" ]
++	then
++		if rm -f /etc/dropbear >/dev/null 2>&1; then
++			mkdir -p /etc/dropbear
++		else
++			echo "No persistent location to store SSH host keys. New keys will be"
++			echo "generated at each boot. Are you sure this is what you want to do?"
++			mkdir -p "$(readlink /etc/dropbear)"
++		fi
++	fi
++
++	printf "Starting dropbear sshd: "
++	umask 077
++
++	start-stop-daemon -S -q -p /var/run/dropbear.pid \
++		--exec /usr/sbin/dropbear -- $DROPBEAR_ARGS
++	[ $? = 0 ] && echo "OK" || echo "FAIL"
++}
++stop() {
++	printf "Stopping dropbear sshd: "
++	start-stop-daemon -K -q -p /var/run/dropbear.pid
++	[ $? = 0 ] && echo "OK" || echo "FAIL"
++}
++restart() {
++	stop
++	start
++}
++
++case "$1" in
++  start)
++  	start
++	;;
++  stop)
++  	stop
++	;;
++  restart|reload)
++  	restart
++	;;
++  *)
++	echo "Usage: $0 {start|stop|restart}"
++	exit 1
 +esac
 +
 +exit $?
@@ -2196,7 +2262,7 @@ index 0000000..3ba831c
 +cp ${BASE_DIR}/../board/ciaa/acc/uEnv.txt ${SD_DIR}/uEnv.txt
 diff --git a/board/ciaa/acc/u-boot.dts b/board/ciaa/acc/u-boot.dts
 new file mode 100644
-index 0000000..7cbdfad
+index 0000000..176eb43
 --- /dev/null
 +++ b/board/ciaa/acc/u-boot.dts
 @@ -0,0 +1,140 @@
@@ -2342,7 +2408,7 @@ index 0000000..7cbdfad
 +};
 diff --git a/board/ciaa/acc/u-boot.patch b/board/ciaa/acc/u-boot.patch
 new file mode 100644
-index 0000000..cf7a1de
+index 0000000..f3e28e3
 --- /dev/null
 +++ b/board/ciaa/acc/u-boot.patch
 @@ -0,0 +1,14480 @@
@@ -2396,7 +2462,7 @@ index 0000000..cf7a1de
 ++	};
 ++        memory@0 {
 ++                device_type = "memory";
-++                reg = <0x0 0x20000000>;
+++                reg = <0x0 0x40000000>;
 ++        };
 ++};
 ++
@@ -17878,10 +17944,10 @@ index 0000000..921171d
 +};
 diff --git a/configs/zynq_ciaa_acc_defconfig b/configs/zynq_ciaa_acc_defconfig
 new file mode 100644
-index 0000000..382f560
+index 0000000..add3143
 --- /dev/null
 +++ b/configs/zynq_ciaa_acc_defconfig
-@@ -0,0 +1,358 @@
+@@ -0,0 +1,365 @@
 +BR2_HAVE_DOT_CONFIG=y
 +BR2_HOST_GCC_AT_LEAST_4_5=y
 +BR2_HOST_GCC_AT_LEAST_4_6=y
@@ -17891,6 +17957,7 @@ index 0000000..382f560
 +BR2_HOST_GCC_AT_LEAST_5=y
 +BR2_ARCH_HAS_MMU_OPTIONAL=y
 +BR2_arm=y
++BR2_ARCH_HAS_TOOLCHAIN_BUILDROOT=y
 +BR2_ARCH="arm"
 +BR2_ENDIAN="LITTLE"
 +BR2_GCC_TARGET_ABI="aapcs-linux"
@@ -17958,6 +18025,7 @@ index 0000000..382f560
 +BR2_PACKAGE_HAS_TOOLCHAIN_EXTERNAL=y
 +BR2_PACKAGE_PROVIDES_TOOLCHAIN_EXTERNAL="toolchain-external-linaro-arm"
 +BR2_TOOLCHAIN_EXTERNAL_PREFIX="arm-linux-gnueabihf"
++BR2_PACKAGE_HOST_GDB_ARCH_SUPPORTS=y
 +BR2_GDB_VERSION="7.11.1"
 +BR2_TOOLCHAIN_HAS_NATIVE_RPC=y
 +BR2_USE_WCHAR=y
@@ -18013,7 +18081,6 @@ index 0000000..382f560
 +BR2_TOOLCHAIN_GCC_AT_LEAST_6=y
 +BR2_TOOLCHAIN_GCC_AT_LEAST="6"
 +BR2_TOOLCHAIN_HAS_MNAN_OPTION=y
-+BR2_TOOLCHAIN_HAS_MFPXX_OPTION=y
 +BR2_TOOLCHAIN_HAS_SYNC_1=y
 +BR2_TOOLCHAIN_HAS_SYNC_2=y
 +BR2_TOOLCHAIN_HAS_SYNC_4=y
@@ -18078,6 +18145,7 @@ index 0000000..382f560
 +BR2_PACKAGE_FFMPEG_ARCH_SUPPORTS=y
 +BR2_PACKAGE_KODI_ARCH_SUPPORTS=y
 +BR2_PACKAGE_MPLAYER_ARCH_SUPPORTS=y
++BR2_PACKAGE_PULSEAUDIO_HAS_ATOMIC=y
 +BR2_PACKAGE_GDB_ARCH_SUPPORTS=y
 +BR2_PACKAGE_GDB=y
 +BR2_PACKAGE_GDB_SERVER=y
@@ -18142,9 +18210,6 @@ index 0000000..382f560
 +BR2_PACKAGE_MICROPYTHON_LIB=y
 +BR2_PACKAGE_MONO_ARCH_SUPPORTS=y
 +BR2_PACKAGE_NODEJS_ARCH_SUPPORTS=y
-+BR2_PACKAGE_NODEJS=y
-+BR2_PACKAGE_NODEJS_MODULES_ADDITIONAL=""
-+BR2_PACKAGE_NODEJS_MODULES_ADDITIONAL_DEPS=""
 +BR2_PACKAGE_FDK_AAC_ARCH_SUPPORTS=y
 +BR2_PACKAGE_OPENAL_ARCH_SUPPORTS=y
 +BR2_PACKAGE_WEBRTC_AUDIO_PROCESSING_ARCH_SUPPORTS=y
@@ -18153,6 +18218,7 @@ index 0000000..382f560
 +BR2_PACKAGE_BOTAN_ARCH_SUPPORTS=y
 +BR2_PACKAGE_LIBGPG_ERROR_ARCH_SUPPORTS=y
 +BR2_PACKAGE_LIBGPG_ERROR_SYSCFG="arm-unknown-linux-gnueabi"
++BR2_PACKAGE_PROVIDES_HOST_OPENSSL="host-libopenssl"
 +BR2_PACKAGE_MONGODB_ARCH_SUPPORTS=y
 +BR2_PACKAGE_JPEG_SIMD_SUPPORT=y
 +BR2_PACKAGE_WEBKITGTK_ARCH_SUPPORTS=y
@@ -18185,6 +18251,7 @@ index 0000000..382f560
 +BR2_PACKAGE_DROPBEAR_CLIENT=y
 +BR2_PACKAGE_DROPBEAR_SMALL=y
 +BR2_PACKAGE_ETHTOOL=y
++BR2_PACKAGE_ETHTOOL_PRETTY_PRINT=y
 +BR2_PACKAGE_IFUPDOWN_SCRIPTS=y
 +BR2_PACKAGE_MONGREL2_LIBC_SUPPORTS=y
 +BR2_PACKAGE_MOSQUITTO=y
@@ -18206,6 +18273,9 @@ index 0000000..382f560
 +BR2_TARGET_ROOTFS_CPIO=y
 +BR2_TARGET_ROOTFS_CPIO_GZIP=y
 +BR2_TARGET_ROOTFS_CPIO_UIMAGE=y
++BR2_TARGET_ROOTFS_TAR=y
++BR2_TARGET_ROOTFS_TAR_NONE=y
++BR2_TARGET_ROOTFS_TAR_OPTIONS=""
 +BR2_TARGET_UBOOT=y
 +BR2_TARGET_UBOOT_BUILD_SYSTEM_KCONFIG=y
 +BR2_TARGET_UBOOT_CUSTOM_TARBALL=y
@@ -18214,6 +18284,7 @@ index 0000000..382f560
 +BR2_TARGET_UBOOT_PATCH="board/ciaa/acc/u-boot.patch"
 +BR2_TARGET_UBOOT_USE_DEFCONFIG=y
 +BR2_TARGET_UBOOT_BOARD_DEFCONFIG="zynq_ciaa_acc"
++BR2_TARGET_UBOOT_CONFIG_FRAGMENT_FILES=""
 +BR2_TARGET_UBOOT_NEEDS_DTC=y
 +BR2_TARGET_UBOOT_NEEDS_OPENSSL=y
 +BR2_TARGET_UBOOT_FORMAT_BIN=y
@@ -18226,6 +18297,8 @@ index 0000000..382f560
 +BR2_PACKAGE_HOST_DTC=y
 +BR2_PACKAGE_HOST_GO_ARCH_SUPPORTS=y
 +BR2_PACKAGE_HOST_GO_CGO_LINKING_SUPPORTS=y
++BR2_PACKAGE_HOST_GO_BOOTSTRAP_ARCH_SUPPORTS=y
++BR2_PACKAGE_HOST_GOOGLE_BREAKPAD_ARCH_SUPPORTS=y
 +BR2_PACKAGE_HOST_PATCHELF=y
 +BR2_PACKAGE_HOST_TI_CGT_PRU_ARCH_SUPPORTS=y
 +BR2_PACKAGE_HOST_UBOOT_TOOLS=y
