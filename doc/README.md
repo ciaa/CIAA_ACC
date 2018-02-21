@@ -1,6 +1,6 @@
 # CIAA ACC Hardware User guide
 
-![CIAA ACC](../bdf/ciaa-acc-1.1/ciaa_acc.jpg)
+![CIAA ACC](../bdf/ciaa-acc/1.1/ciaa_acc.jpg)
 
 ## Overview
 
