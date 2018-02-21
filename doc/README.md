@@ -40,14 +40,20 @@
 
 ### FMC HPC connector
 
-#### Compatibility
+The CIAA-ACC board supports the VITA 57.1 FPGA Mezzanine Card (FMC) specification by providing subset implementations of the high pin count (HPC) connector at J5.
 
-* 3.3v: 3A
-* VADJ: 2A
-* 12V: Not implemented
-* VIO_B_M2C: Not implemented
-* VADJ powers the LA banck only
-* Banks HA and HB, 1.5/1.8V only, selectable by switch
+The connections between the HPC connector at J5 and AP SoC U1 implements:
+* 160 single-ended or 80 differential user-defined signals
+* 3 GTX transceivers and 1 GTX clock
+* 4 differential clocks
+* 1 Present signal (module to the carrier)
+* 159 ground and 9 power connections
+  * 3.3v: 3A
+  * VADJ: 2A
+  * 12V: Not implemented
+  * VIO_B_M2C: Not implemented
+  * VADJ powers the LA banck only
+  * Banks HA and HB, 1.5/1.8V only, selectable by switch
 
 #### User Defined Pins
 
