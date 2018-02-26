@@ -13,12 +13,12 @@
 * FAN
 * Clock
 * Status LEDs
-* Boot Selector
+* [Boot Selector](#boot-selection)
 * User I/Os
-  * 2 x User Leds
+  * [2 x User LEDs](#user-leds)
   * 1 x User Push Button (SRST)
-  * 8 x Digital inputs (isolated)
-  * 8 x Digital outputs (isolated)
+  * 4 x Digital inputs (isolated)
+  * 4 x Digital outputs (isolated)
   * CAN
   * RS-485
   * Expansion Header
@@ -27,7 +27,7 @@
 * USB OTG
 * HDMI
 * PCIe/104
-* 1 x VITA 57.1 FMC-HPC Connector
+* 1 x [VITA 57.1 FMC-HPC Connector](#fmc-hpc-connector)
 * JTAG/Debug
 * JTAG Header
 
@@ -37,6 +37,28 @@
 * [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.1.pdf)
 
 ## Description
+
+## Boot selection
+
+The configuration source is controlled by a 2-position DIP switch at J7.
+
+| Config. Source | J7.1 | J7.2 |
+|----------------|------|------|
+| JTAG           | OFF  | OFF  |
+| QSPI           | OFF  | ON   |
+| N/A            | ON   | OFF  |
+| SD CARD        | ON   | ON   |
+
+## User I/Os
+
+### User LEDs
+
+There are two user LEDs connected to the bank 12 (VADJ).
+
+| FPGA pin | Reference      |
+|----------|----------------|
+| W14      | DS12 (LED_OK)  |
+| W17      | DS13 (LED_ERR) |
 
 ### FMC HPC connector
 
@@ -52,8 +74,8 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
   * VADJ: 2A
   * 12V: Not implemented
   * VIO_B_M2C: Not implemented
-  * VADJ powers the LA banck only
-  * Banks HA and HB, 1.5/1.8V only, selectable by switch
+  * VADJ powers the LA banks (BANK_12 and BANK_13)
+  * HA and HB banks (BANK_33 and BANK_34), are powered with 1.5/1.8V, selectable by switch J19
 
 #### User Defined Pins
 
