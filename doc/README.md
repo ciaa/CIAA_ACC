@@ -15,10 +15,10 @@
 * Status LEDs
 * [Boot Selector](#boot-selection)
 * User I/Os
-  * [2 x User LEDs](#user-leds)
-  * 1 x User Push Button (SRST)
-  * 4 x Digital inputs (isolated)
-  * 4 x Digital outputs (isolated)
+  * 2 x [User LEDs](#user-leds)
+  * 1 x [User Push Button](#user-push-button) (SRST)
+  * 4 x [Digital inputs](#digital-inputs) (isolated)
+  * 4 x [Digital outputs](#digital-outputs) (isolated)
   * CAN
   * RS-485
   * Expansion Header
@@ -49,16 +49,47 @@ The configuration source is controlled by a 2-position DIP switch at J7.
 | N/A            | ON   | OFF  |
 | SD CARD        | ON   | ON   |
 
-## User I/Os
+### User I/Os
 
-### User LEDs
+#### User LEDs
 
-There are two user LEDs connected to the bank 12 (VADJ).
+There are two user LEDs connected to the BANK 12 (VADJ) of the PL.
 
-| FPGA pin | Reference      |
-|----------|----------------|
-| W14      | DS12 (LED_OK)  |
-| W17      | DS13 (LED_ERR) |
+| FPGA pin | LED  | Reference |
+|----------|------|-----------|
+| W14      | DS12 | LED_OK    |
+| W17      | DS13 | LED_ERR   |
+
+#### User Push Button
+
+The active low push button SW3 is connected to the PS (SRST).
+
+#### Digital inputs
+
+![Isolated Digital Inputs](images/gpio_inputs.png)
+
+4 Isolated Digital Inputs are available at J11, connected to the BANK 13 (VADJ) of the PL.
+It supports 12 to 24V inputs.
+
+| FPGA pin | Reference | Associated LED |
+|----------|-----------|----------------|
+| AD24     | DIN0      | DS7            |
+| AF25     | DIN1      | DS8            |
+| AD23     | DIN2      | DS9            |
+| AF24     | DIN3      | DS10           |
+
+#### Digital outputs
+
+![Isolated Digital Outputs](images/gpio_outputs.png)
+
+4 Isolated Digital Outputs are available at J12, connected to the BANK 13 (VADJ) of the PL.
+
+| FPGA pin | Reference | Associated LED |
+|----------|-----------|----------------|
+| AD26     | DOUT0     | DS14           |
+| AE26     | DOUT1     | DS15           |
+| AD25     | DOUT2     | DS16           |
+| AE25     | DOUT3     | DS17           |
 
 ### FMC HPC connector
 
