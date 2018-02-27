@@ -9,9 +9,9 @@
 * 2 x AS4C256M16D3A-12BIN Alliance DDR3 - 1 GB (32 data bits)
 * Quad SPI FLASH S25FL128SAGNFI011 (128 MB, 133MHz)
 * SD/SDIO
-* Power
-* FAN
-* Clock
+* [Power](#power)
+* [Clock](#clock)
+* [FAN](#fan)
 * Status LEDs
 * [Boot Selector](#boot-selection)
 * User I/Os
@@ -38,7 +38,30 @@
 
 ## Description
 
-## Boot selection
+### Power
+
++5V (center positive) must be provided at plug J1.
+
+### Clock
+
+The board provides two clock sources:
+* Single ended 33.33 MHz at U32 as PS clock.
+* LVDS 200 MHz oscillator (DSC1123) at U49.
+
+| FPGA pin | Reference |
+|----------|-----------|
+| G7       | SYSCLK_P  |
+| F7       | SYSCLK_N  |
+
+### Fan
+
+A colling fan can be connected at J9, which could be controlled from the PL.
+
+| FPGA pin | Reference |
+|----------|-----------|
+| B17      | FAN_PWM   |
+
+### Boot selection
 
 The configuration source is controlled by a 2-position DIP switch at J7.
 
@@ -83,6 +106,7 @@ It supports 12 to 24V inputs.
 ![Isolated Digital Outputs](images/gpio_outputs.png)
 
 4 Isolated Digital Outputs are available at J12, connected to the BANK 13 (VADJ) of the PL.
+It supports up to 60V outputs.
 
 | FPGA pin | Reference | Associated LED |
 |----------|-----------|----------------|
