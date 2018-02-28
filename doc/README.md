@@ -28,7 +28,7 @@
 * 2 x [I2C](#i2c)
 * [SPI](#spi)
 * [RS-485](#rs-485) (UART1)
-* CAN
+* [CAN](#can)
 * HDMI
 * PCIe/104
 * 1 x [VITA 57.1 FMC-HPC Connector](#fmc-hpc-connector)
@@ -269,7 +269,7 @@ Connected to PS.
 
 ### I2C
 
-Connected to PS.
+I2C0 and I2C1, connected to PS.
 
 ### SPI
 
@@ -278,6 +278,10 @@ Connected to PS.
 ### RS-485
 
 UART1, connected to PS.
+
+### Can
+
+Connected to PS.
 
 ### JTAG/Debug
 
