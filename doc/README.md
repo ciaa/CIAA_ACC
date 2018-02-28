@@ -2,13 +2,15 @@
 
 ![CIAA ACC](../bdf/ciaa-acc/1.1/ciaa_acc.jpg)
 
+![Block diagram](images/block.png)
+
 ## Overview
 
 * FPGA+SoC Zynq-7000 XC7Z030-2FBG676I
   [[ds190](https://www.xilinx.com/support/documentation/data_sheets/ds190-Zynq-7000-Overview.pdf)]
-* 2 x AS4C256M16D3A-12BIN Alliance DDR3 - 1 GB (32 data bits)
-* Quad SPI FLASH S25FL128SAGNFI011 (128 MB, 133MHz)
-* SD/SDIO
+* 2 x AS4C256M16D3A-12BIN Alliance [DDR3](#ddr3) - 1 GB (32 data bits)
+* [Quad SPI FLASH](#quad-spi-flash) S25FL128SAGNFI011 (128 MB, 133MHz)
+* [SD/SDIO](#sd/sdio)
 * [Power](#power)
 * [Clock](#clock)
 * [FAN](#fan)
@@ -19,16 +21,18 @@
   * 1 x [User Push Button](#user-push-button) (SRST)
   * 4 x [Digital inputs](#digital-inputs) (isolated)
   * 4 x [Digital outputs](#digital-outputs) (isolated)
-  * CAN
-  * RS-485
   * Expansion Header
   * EMIO UART
-* GigaBit Ethernet
-* USB OTG
+* [GigaBit Ethernet](#gigabit-ethernet)
+* [USB OTG](#usb-otg)
+* 2 x [I2C](#i2c)
+* [SPI](#spi)
+* [RS-485](#rs-485) (UART1)
+* CAN
 * HDMI
 * PCIe/104
 * 1 x [VITA 57.1 FMC-HPC Connector](#fmc-hpc-connector)
-* JTAG/Debug
+* [JTAG/Debug](#jtag/debug) (UART0)
 * JTAG Header
 
 ## Resources
@@ -37,6 +41,18 @@
 * [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.1.pdf)
 
 ## Description
+
+### DDR3
+
+Connected to PS.
+
+### Quad SPI FLASH
+
+Connected to PS.
+
+### SD/SDIO
+
+Connected to PS.
 
 ### Power
 
@@ -242,3 +258,27 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
 | VITA 57.1 name | FMC pin | FPGA pin |
 |----------------|---------|----------|
 | PRSNT_M2C_L    | H2      | AF19     |
+
+### GigaBit Ethernet
+
+Connected to PS.
+
+### USB OTG
+
+Connected to PS.
+
+### I2C
+
+Connected to PS.
+
+### SPI
+
+Connected to PS.
+
+### RS-485
+
+UART1, connected to PS.
+
+### JTAG/Debug
+
+UART0, connected to PS.
