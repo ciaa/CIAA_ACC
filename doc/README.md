@@ -6,76 +6,48 @@
 
 ## Overview
 
-* FPGA+SoC Zynq-7000 XC7Z030-2FBG676I
-  [[ds190](https://www.xilinx.com/support/documentation/data_sheets/ds190-Zynq-7000-Overview.pdf)]
-* 2 x AS4C256M16D3A-12BIN Alliance [DDR3](#ddr3) - 1 GB (32 data bits)
-* [Quad SPI FLASH](#quad-spi-flash) S25FL128SAGNFI011 (128 MB, 133MHz)
-* [SD/SDIO](#sd/sdio)
-* [Power](#power)
-* [Clock](#clock)
-* [FAN](#fan)
-* Status LEDs
-* [Boot Selector](#boot-selection)
-* User I/Os
-  * 2 x [User LEDs](#user-leds)
-  * 1 x [User Push Button](#user-push-button) (SRST)
-  * 4 x [Digital inputs](#digital-inputs) (isolated)
-  * 4 x [Digital outputs](#digital-outputs) (isolated)
-  * Expansion Header
-  * EMIO UART
-* [GigaBit Ethernet](#gigabit-ethernet)
-* [USB OTG](#usb-otg)
-* 2 x [I2C](#i2c)
-* [SPI](#spi)
-* [RS-485](#rs-485) (UART1)
-* CAN
-* HDMI
-* PCIe/104
-* 1 x [VITA 57.1 FMC-HPC Connector](#fmc-hpc-connector)
-* [JTAG/Debug](#jtag/debug) (UART0)
-* JTAG Header
-
-## Resources
-
+Resources:
 * [GitHub Repositorie](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC)
 * [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.1.pdf)
 
+* FPGA+SoC Zynq-7000 XC7Z030-2FBG676I
+  [[ds190](https://www.xilinx.com/support/documentation/data_sheets/ds190-Zynq-7000-Overview.pdf)]
+* [Power](#power)
+* [Status LEDs](#status-leds)
+* [Boot Selector](#boot-selection)
+* [Clock](#clock)
+* [Connected to PS part](#ps)
+  * 2 x AS4C256M16D3A-12BIN Alliance [DDR3](#ddr3) - 1 GB (32 data bits)
+  * [Quad SPI FLASH](#quad-spi-flash) S25FL128SAGNFI011 (128 MB, 133MHz)
+  * [SD/SDIO](#sd/sdio)
+  * 1 x [User Push Button](#user-push-button) (SRST)
+  * [GigaBit Ethernet](#gigabit-ethernet)
+  * [USB OTG](#usb-otg)
+  * 2 x [I2C](#i2c)
+  * [RS-485](#rs-485) (UART1)
+  * [CAN](#can)
+* [Connected to PL part](#pl)
+  * [User I/Os](#user-i/os)
+    * 2 x [User LEDs](#user-leds)
+    * 4 x [Digital inputs](#digital-inputs) (isolated)
+    * 4 x [Digital outputs](#digital-outputs) (isolated)
+    * Expansion Header
+  * [SPI](#spi) (SPI0)
+  * EMIO [UART](#uart) (UART0 at PL)
+  * [HDMI](#hdmi)
+  * [PCIe/104](#pcie/104)
+  * 1 x [VITA 57.1 FMC-HPC Connector](#fmc-hpc-connector)
+  * [FAN](#fan)
+* [JTAG/Debug](#jtag/debug) (UART0 at PS)
+* [JTAG Header](#jtag-header)
+
 ## Description
-
-### DDR3
-
-Connected to PS.
-
-### Quad SPI FLASH
-
-Connected to PS.
-
-### SD/SDIO
-
-Connected to PS.
 
 ### Power
 
 +5V (center positive) must be provided at plug J1.
 
-### Clock
-
-The board provides two clock sources:
-* Single ended 33.33 MHz at U32 as PS clock.
-* LVDS 200 MHz oscillator (DSC1123) at U49.
-
-| FPGA pin | Reference |
-|----------|-----------|
-| G7       | SYSCLK_P  |
-| F7       | SYSCLK_N  |
-
-### Fan
-
-A colling fan can be connected at J9, which could be controlled from the PL.
-
-| FPGA pin | Reference |
-|----------|-----------|
-| B17      | FAN_PWM   |
+### Status LEDs
 
 ### Boot selection
 
@@ -88,9 +60,46 @@ The configuration source is controlled by a 2-position DIP switch at J7.
 | N/A            | ON   | OFF  |
 | SD CARD        | ON   | ON   |
 
-### User I/Os
+### Clock
 
-#### User LEDs
+The board provides two clock sources:
+* Single ended 33.33 MHz at U32 as PS clock.
+* LVDS 200 MHz oscillator (DSC1123) at U49.
+
+| FPGA pin | Reference |
+|----------|-----------|
+| G7       | SYSCLK_P  |
+| F7       | SYSCLK_N  |
+
+### PS
+
+#### DDR3
+
+#### Quad SPI FLASH
+
+#### SD/SDIO
+
+#### User Push Button
+
+The active low push button SW3 is connected to the PS (SRST).
+
+#### GigaBit Ethernet
+
+#### USB OTG
+
+#### I2C
+
+#### RS-485
+
+UART1.
+
+#### CAN
+
+### PL
+
+#### User I/Os
+
+##### User LEDs
 
 There are two user LEDs connected to the BANK 12 (VADJ) of the PL.
 
@@ -99,11 +108,7 @@ There are two user LEDs connected to the BANK 12 (VADJ) of the PL.
 | W14      | DS12 | LED_OK    |
 | W17      | DS13 | LED_ERR   |
 
-#### User Push Button
-
-The active low push button SW3 is connected to the PS (SRST).
-
-#### Digital inputs
+##### Digital inputs
 
 ![Isolated Digital Inputs](images/gpio_inputs.png)
 
@@ -117,7 +122,7 @@ It supports 12 to 24V inputs.
 | AD23     | DIN2      | DS9            |
 | AF24     | DIN3      | DS10           |
 
-#### Digital outputs
+##### Digital outputs
 
 ![Isolated Digital Outputs](images/gpio_outputs.png)
 
@@ -131,7 +136,15 @@ It supports up to 60V outputs.
 | AD25     | DOUT2     | DS16           |
 | AE25     | DOUT3     | DS17           |
 
-### FMC HPC connector
+#### SPI
+
+#### UART
+
+#### HDMI
+
+#### PCIe/104
+
+#### FMC HPC connector
 
 The CIAA-ACC board supports the VITA 57.1 FPGA Mezzanine Card (FMC) specification by providing subset implementations of the high pin count (HPC) connector at J5.
 
@@ -148,7 +161,7 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
   * VADJ powers the LA banks (BANK_12 and BANK_13)
   * HA and HB banks (BANK_33 and BANK_34), are powered with 1.5/1.8V, selectable by switch J19
 
-#### User Defined Pins
+##### User Defined Pins
 
 | VITA 57.1 name | FMC pin | FPGA pin | VITA 57.1 name | FMC pin | FPGA pin | VITA 57.1 name | FMC pin | FPGA pin |
 |----------------|---------|----------|----------------|---------|----------|----------------|---------|----------|
@@ -221,7 +234,7 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
 | LA33_P         | G36     | AE17     |
 | LA33_N         | G37     | AF17     |
 
-#### Differential Reference Clocks
+##### Differential Reference Clocks
 
 | VITA 57.1 name | FMC pin | FPGA pin |
 |----------------|---------|----------|
@@ -234,7 +247,7 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
 | CLK3_M2C_P     | J2      | D15      |
 | CLK3_M2C_N     | J3      | D14      |
 
-#### Gigabit Interface
+##### Gigabit Interface
 
 | VITA 57.1 name | FMC pin | FPGA pin |
 |----------------|---------|----------|
@@ -253,32 +266,22 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
 | DP2_C2M_P      | A22     | U2       |
 | DP2_C2M_N      | A23     | U1       |
 
-#### Misc
+##### Misc
 
 | VITA 57.1 name | FMC pin | FPGA pin |
 |----------------|---------|----------|
 | PRSNT_M2C_L    | H2      | AF19     |
 
-### GigaBit Ethernet
+#### Fan
 
-Connected to PS.
+A colling fan can be connected at J9, which could be controlled from the PL.
 
-### USB OTG
-
-Connected to PS.
-
-### I2C
-
-Connected to PS.
-
-### SPI
-
-Connected to PS.
-
-### RS-485
-
-UART1, connected to PS.
+| FPGA pin | Reference |
+|----------|-----------|
+| B17      | FAN_PWM   |
 
 ### JTAG/Debug
 
 UART0, connected to PS.
+
+### JTAG Header
