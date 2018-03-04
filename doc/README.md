@@ -146,6 +146,8 @@ It supports up to 60V outputs.
 
 #### FMC HPC connector
 
+![FMC HPC](images/FMC_HPC.png)
+
 The CIAA-ACC board supports the VITA 57.1 FPGA Mezzanine Card (FMC) specification by providing subset implementations of the high pin count (HPC) connector at J5.
 
 The connections between the HPC connector at J5 and AP SoC U1 implements:
