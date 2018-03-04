@@ -4,11 +4,11 @@
 
 ![Block diagram](images/block.png)
 
-## Overview
-
-Resources:
+## Resources
 * [GitHub Repositorie](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC)
 * [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.1.pdf)
+
+## Overview
 
 * FPGA+SoC Zynq-7000 XC7Z030-2FBG676I
   [[ds190](https://www.xilinx.com/support/documentation/data_sheets/ds190-Zynq-7000-Overview.pdf)]
@@ -19,7 +19,7 @@ Resources:
 * [Connected to PS part](#ps)
   * 2 x AS4C256M16D3A-12BIN Alliance [DDR3](#ddr3) - 1 GB (32 data bits)
   * [Quad SPI FLASH](#quad-spi-flash) S25FL128SAGNFI011 (128 MB, 133MHz)
-  * [SD/SDIO](#sd/sdio)
+  * [SD/SDIO](#sdsdio)
   * 1 x [User Push Button](#user-push-button) (SRST)
   * [GigaBit Ethernet](#gigabit-ethernet)
   * [USB OTG](#usb-otg)
@@ -27,18 +27,18 @@ Resources:
   * [RS-485](#rs-485) (UART1)
   * [CAN](#can)
 * [Connected to PL part](#pl)
-  * [User I/Os](#user-i/os)
+  * [User I/Os](#user-ios)
     * 2 x [User LEDs](#user-leds)
     * 4 x [Digital inputs](#digital-inputs) (isolated)
     * 4 x [Digital outputs](#digital-outputs) (isolated)
     * Expansion Header
   * [SPI](#spi) (SPI0)
-  * EMIO [UART](#uart) (UART0 at PL)
+  * [UART](#uart) (UART0 at PL)
   * [HDMI](#hdmi)
-  * [PCIe/104](#pcie/104)
+  * [PCIe/104](#pcie104)
   * 1 x [VITA 57.1 FMC-HPC Connector](#fmc-hpc-connector)
   * [FAN](#fan)
-* [JTAG/Debug](#jtag/debug) (UART0 at PS)
+* [JTAG/Debug](#jtagdebug) (UART0 at PS)
 * [JTAG Header](#jtag-header)
 
 ## Description
