@@ -45,7 +45,29 @@
 
 ### Power
 
+![Power](images/power.png)
+
 +5V (center positive) must be provided at plug J1.
+
+VCCO_HP powers the banks 33, 34 and 35 of the Zynq device.
+1.5V or 1.8V can be selected using the switch J19 (botton side of the board).
+Banks HA and HB of the FMC HPC connector are connected to the banks 33 and 34.
+The differential clocks 2 and 3 from the FMC connector, the 8 GPIOs and the signals FAN_PWM and VADJ_EN are connected to the bank 35.
+
+VCCO_HR (VADJ) powers the banks 12 and 13 of the Zynq device.
+The banks LA of the FMC connector is connected to the banks 12 and 13.
+The differential clocks 0 and 1 from the FMC connector, and the LED_OK and LED_ERR indications, are connected to the bank 12.
+The FMC present signal, the digital isolated I/Os, the 485 enable signal, and ports for HDMI, EMIO_UART and CAN, are connected to the bank 13.
+VADJ value is based on the TPS563209 (U8) switching regulator and its voltage can be set by changing the feedback resistor through a digital I2C (address 0x2F at I2C1) potentiometer MCP4017T-503E/LT (U10). The table shows the resistance values that must be set in the potentiometer to achieve the desidered voltage, where 2.3V is the Power On Reset value. Is suggested to turn off the regulator before setting the new feedback value. This can be achieved with the VADJ_EN signal present in the J15 pin of the FPGA. Also, to ensure stability, the maximum capacitive load in VADJ is 38uF.
+
+| Resistance (K) | Voltage (V) |
+|----------------|-------------|
+| 49.7           | 3.3         |
+| 29.5           | 2.5         |
+| 25             | 2.3         |
+| 15.7           | 1.8         |
+| 10.7           | 1.5         |
+| 6.1v           | 1.2         |
 
 ### Status LEDs
 
@@ -154,14 +176,13 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
 * 160 single-ended or 80 differential user-defined signals.
 * 3 GTX transceivers and 1 GTX clock.
 * 4 differential clocks.
-* 1 Present signal (PG_C2M, carrier to the module): connected to the POWERGOOD signal of the TPS65400 (U9), which indicates that all voltages are at the right level.
+* 1 Present signal (PRSNT_M2C_L).
+* 1 Powergood signal (PG_C2M): connected to the POWERGOOD signal of the TPS65400 (U9), which indicates that all voltages are at the right level.
 * 159 ground and 9 power connections.
   * 3.3v: 3A
   * VADJ: 2A
   * 12V: Not implemented.
   * VIO_B_M2C: Not implemented.
-  * VADJ powers the LA banks (BANK_12 and BANK_13).
-  * HA and HB banks (BANK_33 and BANK_34), are powered with 1.5/1.8V, selectable by switch J19.
 * I2C interface: connected to the SMBUS (I2C0 at PS part).
 * JTAG: the switch J20 (under the FMC connector) is used to exclude (ON) or exclude the FMC card in the chain.
 
