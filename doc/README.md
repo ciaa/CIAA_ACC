@@ -151,17 +151,19 @@ It supports up to 60V outputs.
 The CIAA-ACC board supports the VITA 57.1 FPGA Mezzanine Card (FMC) specification by providing subset implementations of the high pin count (HPC) connector at J5.
 
 The connections between the HPC connector at J5 and AP SoC U1 implements:
-* 160 single-ended or 80 differential user-defined signals
-* 3 GTX transceivers and 1 GTX clock
-* 4 differential clocks
-* 1 Present signal (module to the carrier)
-* 159 ground and 9 power connections
+* 160 single-ended or 80 differential user-defined signals.
+* 3 GTX transceivers and 1 GTX clock.
+* 4 differential clocks.
+* 1 Present signal (PG_C2M, carrier to the module): connected to the POWERGOOD signal of the TPS65400 (U9), which indicates that all voltages are at the right level.
+* 159 ground and 9 power connections.
   * 3.3v: 3A
   * VADJ: 2A
-  * 12V: Not implemented
-  * VIO_B_M2C: Not implemented
-  * VADJ powers the LA banks (BANK_12 and BANK_13)
-  * HA and HB banks (BANK_33 and BANK_34), are powered with 1.5/1.8V, selectable by switch J19
+  * 12V: Not implemented.
+  * VIO_B_M2C: Not implemented.
+  * VADJ powers the LA banks (BANK_12 and BANK_13).
+  * HA and HB banks (BANK_33 and BANK_34), are powered with 1.5/1.8V, selectable by switch J19.
+* I2C interface: connected to the SMBUS (I2C0 at PS part).
+* JTAG: the switch J20 (under the FMC connector) is used to exclude (ON) or exclude the FMC card in the chain.
 
 ##### User Defined Pins
 
