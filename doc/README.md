@@ -191,53 +191,53 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
 | VITA 57.1 name | FMC pin | FPGA pin | VITA 57.1 name | FMC pin | FPGA pin | VITA 57.1 name | FMC pin | FPGA pin |
 |----------------|---------|----------|----------------|---------|----------|----------------|---------|----------|
 | LA00_P         | E6      | AC12     | HA00_P         | F4      | D6       | HB00_P         | K25     | F8       |
-| LA00_N         | E7      | AD11     | HA00_P         | F5      | C6       | HB00_P         | K26     | E7       |
+| LA00_N         | E7      | AD11     | HA00_N         | F5      | C6       | HB00_N         | K26     | E7       |
 | LA01_P         | D8      | AC13     | HA01_P         | E2      | C8       | HB01_P         | J24     | F5       |
-| LA01_N         | D9      | AD13     | HA01_P         | E3      | C7       | HB01_P         | J25     | E5       |
+| LA01_N         | D9      | AD13     | HA01_N         | E3      | C7       | HB01_N         | J25     | E5       |
 | LA02_P         | H7      | Y10      | HA02_P         | K7      | G2       | HB02_P         | F22     | D1       |
-| LA02_N         | H8      | AA10     | HA02_P         | K8      | F2       | HB02_P         | F23     | C1       |
+| LA02_N         | H8      | AA10     | HA02_N         | K8      | F2       | HB02_N         | F23     | C1       |
 | LA03_P         | G9      | AB11     | HA03_P         | J6      | G4       | HB03_P         | E21     | C2       |
-| LA03_N         | G10     | AB10     | HA03_P         | J7      | F4       | HB03_P         | E22     | B1       |
+| LA03_N         | G10     | AB10     | HA03_N         | J7      | F4       | HB03_N         | E22     | B1       |
 | LA04_P         | H10     | Y12      | HA04_P         | F7      | E2       | HB04_P         | F25     | G6       |
-| LA04_N         | H11     | Y11      | HA04_P         | F8      | E1       | HB04_P         | F26     | G5       |
+| LA04_N         | H11     | Y11      | HA04_N         | F8      | E1       | HB04_N         | F26     | G5       |
 | LA05_P         | D11     | AE11     | HA05_P         | E6      | J11      | HB05_P         | E24     | F3       |
-| LA05_N         | D12     | AF10     | HA05_P         | E7      | H11      | HB05_P         | E25     | E3       |
+| LA05_N         | D12     | AF10     | HA05_N         | E7      | H11      | HB05_N         | E25     | E3       |
 | LA06_P         | C10     | AE10     | HA06_P         | K10     | D9       | HB06_P         | K28     | J4       |
-| LA06_N         | C11     | AD10     | HA06_P         | K11     | D8       | HB06_P         | K29     | J3       |
+| LA06_N         | C11     | AD10     | HA06_N         | K11     | D8       | HB06_N         | K29     | J3       |
 | LA07_P         | H13     | W13      | HA07_P         | J9      | J8       | HB07_P         | J27     | H7       |
-| LA07_N         | H14     | Y13      | HA07_P         | J10     | H8       | HB07_P         | J28     | H6       |
+| LA07_N         | H14     | Y13      | HA07_N         | J10     | H8       | HB07_N         | J28     | H6       |
 | LA08_P         | G12     | AA13     | HA08_P         | F10     | C9       | HB08_P         | F28     | H2       |
-| LA08_N         | G13     | AA12     | HA08_P         | F11     | B9       | HB08_P         | F29     | G1       |
+| LA08_N         | G13     | AA12     | HA08_N         | F11     | B9       | HB08_N         | F29     | G1       |
 | LA09_P         | D14     | AB12     | HA09_P         | E9      | B10      | HB09_P         | E27     | H4       |
-| LA09_N         | D15     | AC11     | HA09_P         | E10     | A10      | HB09_P         | E28     | H3       |
+| LA09_N         | D15     | AC11     | HA09_N         | E10     | A10      | HB09_N         | E28     | H3       |
 | LA10_P         | C14     | AA15     | HA10_P         | K13     | B7       | HB10_P         | K31     | M7       |
-| LA10_N         | C15     | AA14     | HA10_P         | K14     | A7       | HB10_P         | K32     | L7       |
+| LA10_N         | C15     | AA14     | HA10_N         | K14     | A7       | HB10_N         | K32     | L7       |
 | LA11_P         | H16     | Y17      | HA11_P         | J12     | F9       | HB11_P         | J30     | K6       |
-| LA11_N         | H17     | AA17     | HA11_P         | J13     | E8       | HB11_P         | J31     | J6       |
+| LA11_N         | H17     | AA17     | HA11_N         | J13     | E8       | HB11_N         | J31     | J6       |
 | LA12_P         | G15     | W16      | HA12_P         | F13     | A9       | HB12_P         | F31     | K2       |
-| LA12_N         | G16     | W15      | HA12_P         | F14     | A8       | HB12_P         | F32     | K1       |
+| LA12_N         | G16     | W15      | HA12_N         | F14     | A8       | HB12_N         | F32     | K1       |
 | LA13_P         | D17     | AE12     | HA13_P         | E12     | J10      | HB13_P         | E30     | J1       |
-| LA13_N         | D18     | AF12     | HA13_P         | E13     | J9       | HB13_P         | E31     | H1       |
+| LA13_N         | D18     | AF12     | HA13_N         | E13     | J9       | HB13_N         | E31     | H1       |
 | LA14_P         | C18     | AE13     | HA14_P         | J15     | B6       | HB14_P         | K34     | N3       |
-| LA14_N         | C19     | AF13     | HA14_P         | J16     | A5       | HB14_P         | K35     | N2       |
+| LA14_N         | C19     | AF13     | HA14_N         | J16     | A5       | HB14_N         | K35     | N2       |
 | LA15_P         | H19     | W18      | HA15_P         | F16     | M8       | HB15_P         | J33     | M2       |
-| LA15_N         | H20     | W19      | HA15_P         | F17     | L8       | HB15_P         | J32     | L2       |
+| LA15_N         | H20     | W19      | HA15_N         | F17     | L8       | HB15_N         | J32     | L2       |
 | LA16_P         | G18     | Y18      | HA16_P         | E15     | K8       | HB16_P         | F34     | K5       |
-| LA16_N         | G19     | AA18     | HA16_P         | E16     | K7       | HB16_P         | F35     | J5       |
+| LA16_N         | G19     | AA18     | HA16_N         | E16     | K7       | HB16_N         | F35     | J5       |
 | LA17_P         | D20     | AD20     | HA17_P         | K16     | L5       | HB17_P         | K37     | M6       |
-| LA17_N         | D21     | AD21     | HA17_P         | K17     | L4       | HB17_P         | K38     | M5       |
+| LA17_N         | D21     | AD21     | HA17_N         | K17     | L4       | HB17_N         | K38     | M5       |
 | LA18_P         | C22     | AC23     | HA18_P         | J18     | B5       | HB18_P         | J36     | N4       |
-| LA18_N         | C23     | AC24     | HA18_P         | J19     | B4       | HB18_P         | J37     | M4       |
+| LA18_N         | C23     | AC24     | HA18_N         | J19     | B4       | HB18_N         | J37     | M4       |
 | LA19_P         | H22     | Y16      | HA19_P         | F19     | A4       | HB19_P         | E33     | L3       |
-| LA19_N         | H23     | Y15      | HA19_P         | F20     | A3       | HB19_P         | E34     | K3       |
+| LA19_N         | H23     | Y15      | HA19_N         | F20     | A3       | HB19_N         | E34     | K3       |
 | LA20_P         | G21     | AF15     | HA20_P         | E18     | B2       | HB20_P         | F37     | N7       |
-| LA20_N         | G22     | AF14     | HA20_P         | E19     | A2       | HB20_P         | F38     | N6       |
+| LA20_N         | G22     | AF14     | HA20_N         | E19     | A2       | HB20_N         | F38     | N6       |
 | LA21_P         | H25     | AE20     | HA21_P         | K19     | C4       | HB21_P         | E36     | N1       |
-| LA21_N         | H26     | AE21     | HA21_P         | K20     | C3       | HB21_P         | E37     | M1       |
+| LA21_N         | H26     | AE21     | HA21_N         | K20     | C3       | HB21_N         | E37     | M1       |
 | LA22_P         | G24     | W20      | HA22_P         | J21     | D4       |
-| LA22_N         | G25     | Y20      | HA22_P         | J22     | D3       |
+| LA22_N         | G25     | Y20      | HA22_N         | J22     | D3       |
 | LA23_P         | D23     | AB17     | HA23_P         | K22     | E6       |
-| LA23_N         | D24     | AB16     | HA23_P         | K23     | E5       |
+| LA23_N         | D24     | AB16     | HA23_N         | K23     | E5       |
 | LA24_P         | H28     | AA19     |
 | LA24_N         | H29     | AB19     |
 | LA25_P         | G27     | AC17     |
