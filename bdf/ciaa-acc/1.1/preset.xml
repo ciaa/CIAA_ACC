@@ -36,6 +36,7 @@
         <user_parameter name="CONFIG.PCW_ACT_UART_PERIPHERAL_FREQMHZ" value="100.000000"/>
         <user_parameter name="CONFIG.PCW_ACT_SPI_PERIPHERAL_FREQMHZ" value="166.666672"/>
         <user_parameter name="CONFIG.PCW_ACT_CAN_PERIPHERAL_FREQMHZ" value="100.000000"/>
+        <user_parameter name="CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ" value="100.000000"/>
         <user_parameter name="CONFIG.PCW_QSPI_PERIPHERAL_DIVISOR0" value="7"/>
         <user_parameter name="CONFIG.PCW_SDIO_PERIPHERAL_DIVISOR0" value="20"/>
         <user_parameter name="CONFIG.PCW_UART_PERIPHERAL_DIVISOR0" value="10"/>
@@ -43,7 +44,8 @@
         <user_parameter name="CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0" value="5"/>
         <user_parameter name="CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1" value="2"/>
         <user_parameter name="CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0" value="5"/>
-        <user_parameter name="CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1" value="4"/>
+        <user_parameter name="CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1" value="2"/>
+        <user_parameter name="CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ" value="100"/>
         <user_parameter name="CONFIG.PCW_ENET0_PERIPHERAL_DIVISOR0" value="8"/>
         <user_parameter name="CONFIG.PCW_PCAP_PERIPHERAL_DIVISOR0" value="5"/>
         <user_parameter name="CONFIG.PCW_IOPLL_CTRL_FBDIV" value="30"/>
@@ -51,10 +53,11 @@
         <user_parameter name="CONFIG.PCW_SDIO_PERIPHERAL_VALID" value="1"/>
         <user_parameter name="CONFIG.PCW_SPI_PERIPHERAL_VALID" value="1"/>
         <user_parameter name="CONFIG.PCW_CAN_PERIPHERAL_VALID" value="1"/>
+        <user_parameter name="CONFIG.PCW_CLK0_FREQ" value="100000000"/>
         <user_parameter name="CONFIG.PCW_UART_PERIPHERAL_VALID" value="1"/>
         <user_parameter name="CONFIG.PCW_EN_EMIO_CAN0" value="1"/>
         <user_parameter name="CONFIG.PCW_EN_EMIO_GPIO" value="1"/>
-        <user_parameter name="CONFIG.PCW_USE_M_AXI_GP0" value="0"/>
+        <user_parameter name="CONFIG.PCW_USE_M_AXI_GP0" value="1"/>
         <user_parameter name="CONFIG.PCW_M_AXI_GP0_FREQMHZ" value="50"/>
         <user_parameter name="CONFIG.PCW_GPIO_EMIO_GPIO_WIDTH" value="2"/>
         <user_parameter name="CONFIG.PCW_EN_QSPI" value="1"/>
@@ -68,7 +71,7 @@
         <user_parameter name="CONFIG.PCW_EN_UART0" value="1"/>
         <user_parameter name="CONFIG.PCW_EN_UART1" value="1"/>
         <user_parameter name="CONFIG.PCW_EN_USB0" value="1"/>
-        <user_parameter name="CONFIG.PCW_EN_RST0_PORT" value="0"/>
+        <user_parameter name="CONFIG.PCW_EN_RST0_PORT" value="1"/>
         <user_parameter name="CONFIG.PCW_PRESET_BANK1_VOLTAGE" value="LVCMOS 1.8V"/>
         <user_parameter name="CONFIG.PCW_UIPARAM_DDR_HIGH_TEMP" value="High (95 Max)"/>
         <user_parameter name="CONFIG.PCW_UIPARAM_DDR_PARTNO" value="Custom"/>
