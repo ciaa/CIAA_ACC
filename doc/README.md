@@ -31,13 +31,13 @@
     * 2 x [User LEDs](#user-leds)
     * 4 x [Digital inputs](#digital-inputs) (isolated)
     * 4 x [Digital outputs](#digital-outputs) (isolated)
-    * Expansion Header
   * [SPI](#spi) (SPI0)
   * [UART](#uart) (UART0 at PL)
   * [HDMI](#hdmi)
   * [PCIe/104](#pcie104)
   * 1 x [VITA 57.1 FMC-HPC Connector](#fmc-hpc-connector)
   * [FAN](#fan)
+* [Expansion Header](#expansion-header)
 * [JTAG/Debug](#jtagdebug) (UART0 at PS)
 * [JTAG Header](#jtag-header)
 
@@ -305,11 +305,36 @@ A colling fan can be connected at J9, which could be controlled from the PL.
 |----------|-----------|
 | B17      | FAN_PWM   |
 
+### Expansion Header
+
 ### JTAG/Debug
 
-UART0, connected to PS.
+* UART0, connected to PS.
+* Implemented as a USB-to-UART bridge with a LPC11U35 (U17).
+* Is automatically recognized in GNU/Linux and Windows 10 (driver for other Windows version not found yet).
 
 ### JTAG Header
+
+* LPC11U35 (U17) provides JTAG (not supported by Vivado).
+* J20 is used to include (1-2) or exclude (2-3) the JTAG of the FMC  connector.
+* J6 could be used to connect an external JTAG cable (10 Position Receptacle Connector 0.050"/1.27mm).
+
+| J6 pin | Signal       |
+|--------|--------------|
+| 1      | +3.3v        |
+| 2      | TMS          |
+| 3      | GND          |
+| 4      | TCK          |
+| 5      | GND          |
+| 6      | TDO          |
+| 7      | NC           |
+| 8      | TDI          |
+| 9      | GND          |
+| 10     | RESET (SRTS) |
+
+Note: for a list of external JTAG cables supported by Vivado, see
+*Vivado Design Suite User Guide - Programming and Debugging (UG908)*,
+section *Connecting to a Hardware Target Using hw_server*.
 
 ## Annex A: simulated propagation times in the FMC connector
 
