@@ -24,6 +24,7 @@
   * [GigaBit Ethernet](#gigabit-ethernet)
   * [USB OTG](#usb-otg)
   * 2 x [I2C](#i2c)
+  * [SPI](#spi) (SPI0)
   * [RS-485](#rs-485) (UART1)
   * [CAN](#can)
 * [Connected to PL part](#pl)
@@ -31,7 +32,7 @@
     * 2 x [User LEDs](#user-leds)
     * 4 x [Digital inputs](#digital-inputs) (isolated)
     * 4 x [Digital outputs](#digital-outputs) (isolated)
-  * [SPI](#spi) (SPI0)
+    * 8 x [GPIOs](#gpios)
   * [UART](#uart) (UART0 at PL)
   * [HDMI](#hdmi)
   * [PCIe/104](#pcie104)
@@ -111,6 +112,21 @@ The active low push button SW3 is connected to the PS (SRST).
 
 #### I2C
 
+* I2C0 is connected to the PS and the SMBUS:
+  * PCIe/104 conector (J2/J3) (SCL in pin 49 and SDA in pin 47)
+  * FMC HPC connector (J5) (SCL in pin C30 and SDA in pin C31)
+* I2C1 is connected to the PS and:
+  * The [Expansion Header](#expansion-header)
+  * TPS65400 (U9) -> address 0x69
+  * MCP4017 (U10) -> address 0x2F
+  * MCP79410 (U12) -> address 0x57 and 0x6F
+  * HDMI (J4) connector (SCL in pin 15 and SDA in pin 16)
+* Both of them are connected to the BANK 500 (+3.3v)
+
+#### SPI
+
+The SPI0 is connected to the PS and to the [Expansion Header](#expansion-header).
+
 #### RS-485
 
 UART1.
@@ -158,7 +174,9 @@ It supports up to 60V outputs.
 | AD25     | DOUT2     | DS16           |
 | AE25     | DOUT3     | DS17           |
 
-#### SPI
+##### GPIOs
+
+8 GPIOs are connected to the PL and to the [Expansion Header](#expansion-header).
 
 #### UART
 
@@ -184,7 +202,7 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
   * 12V: Not implemented.
   * VIO_B_M2C: Not implemented.
 * I2C interface: connected to the SMBUS (I2C0 at PS part).
-* JTAG: the switch J20 (under the FMC connector) is used to exclude (ON) or exclude the FMC card in the chain.
+* JTAG: the switch J20 (under the FMC connector) is used to include (1-2) or exclude (2-3) the FMC card in the chain.
 
 ##### User Defined Pins
 
@@ -307,6 +325,35 @@ A colling fan can be connected at J9, which could be controlled from the PL.
 
 ### Expansion Header
 
+The header J10 provides access to I2C1 (PS), SPI0 (PS) and 8 GPIOs (PL).
+
+![Expansion Header](images/expansion.png)
+
+| FPGA pin | J10 pin | Reference |
+|----------|---------|-----------|
+|          | 1       | +5v       |
+|          | 2       | +3.3v     |
+|          | 3       | GND       |
+|          | 4       | GND       |
+| A12      | 5       | GPIO0     |
+| B12      | 6       | GPIO1     |
+| A13      | 7       | GPIO2     |
+| A14      | 8       | GPIO3     |
+| B14      | 9       | GPIO4     |
+| A15      | 10      | GPIO5     |
+| B15      | 11      | GPIO6     |
+| A17      | 12      | GPIO7     |
+|          | 13      | SPI_MOSI  |
+|          | 14      | SPI_CLK   |
+|          | 15      | SPI_MISO  |
+|          | 16      | SPI_CS    |
+|          | 17      | GND       |
+|          | 18      | GND       |
+|          | 19      | I2C_SDA   |
+|          | 20      | I2C_SCL   |
+
+**Note:** GPIOs only available when VCCO_HP = 1.8V.
+
 ### JTAG/Debug
 
 * UART0, connected to PS.
@@ -319,7 +366,7 @@ A colling fan can be connected at J9, which could be controlled from the PL.
 * J20 is used to include (1-2) or exclude (2-3) the JTAG of the FMC  connector.
 * J6 could be used to connect an external JTAG cable (10 Position Receptacle Connector 0.050"/1.27mm).
 
-| J6 pin | Signal       |
+| J6 pin | Reference    |
 |--------|--------------|
 | 1      | +3.3v        |
 | 2      | TMS          |
@@ -332,7 +379,7 @@ A colling fan can be connected at J9, which could be controlled from the PL.
 | 9      | GND          |
 | 10     | RESET (SRTS) |
 
-Note: for a list of external JTAG cables supported by Vivado, see
+***Note:** for a list of external JTAG cables supported by Vivado, see
 *Vivado Design Suite User Guide - Programming and Debugging (UG908)*,
 section *Connecting to a Hardware Target Using hw_server*.
 
