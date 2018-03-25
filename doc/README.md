@@ -16,6 +16,7 @@
 * [Status LEDs](#status-leds)
 * [Boot Selector](#boot-selection)
 * [Clock](#clock)
+* [Real Time Clock](#real-time-clock) (RTC)
 * [Connected to PS part](#ps)
   * 2 x AS4C256M16D3A-12BIN Alliance [DDR3](#ddr3) - 1 GB (32 data bits)
   * [Quad SPI FLASH](#quad-spi-flash) S25FL128SAGNFI011 (128 MB, 133MHz)
@@ -94,6 +95,8 @@ The board provides two clock sources:
 | G7       | SYSCLK_P  |
 | F7       | SYSCLK_N  |
 
+### Real Time Clock
+
 ### PS
 
 #### DDR3
@@ -129,9 +132,11 @@ The SPI0 is connected to the PS and to the [Expansion Header](#expansion-header)
 
 #### RS-485
 
-UART1.
+* UART1, connected to PS.
 
 #### CAN
+
+* CAN, connected to PS.
 
 ### PL
 
@@ -179,6 +184,15 @@ It supports up to 60V outputs.
 8 GPIOs are connected to the PL and to the [Expansion Header](#expansion-header).
 
 #### UART
+
+* UART0 at PL (J13).
+* Connected to the BANK 13 (VADJ).
+
+| FPGA pin | J13 pin | Reference |
+|----------|---------|-----------|
+| AE23     | 1       | TX        |
+| V19      | 2       | RX        |
+|          | 3       | GND       |
 
 #### HDMI
 
@@ -379,7 +393,7 @@ The header J10 provides access to I2C1 (PS), SPI0 (PS) and 8 GPIOs (PL).
 | 9      | GND          |
 | 10     | RESET (SRTS) |
 
-***Note:** for a list of external JTAG cables supported by Vivado, see
+**Note:** for a list of external JTAG cables supported by Vivado, see
 *Vivado Design Suite User Guide - Programming and Debugging (UG908)*,
 section *Connecting to a Hardware Target Using hw_server*.
 
