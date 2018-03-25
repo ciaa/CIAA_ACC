@@ -5,8 +5,10 @@
 ![Block diagram](images/block.png)
 
 ## Resources
+
 * [GitHub Repositorie](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC)
 * [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.1.pdf)
+* [Master Constraints File](ciaa_acc_master.xdc)
 
 ## Overview
 
@@ -21,7 +23,7 @@
   * 2 x AS4C256M16D3A-12BIN Alliance [DDR3](#ddr3) - 1 GB (32 data bits)
   * [Quad SPI FLASH](#quad-spi-flash) S25FL128SAGNFI011 (128 MB, 133MHz)
   * [SD/SDIO](#sdsdio)
-  * 1 x [User Push Button](#user-push-button) (SRST)
+  * [User Push Button](#user-push-button) (SRST)
   * [GigaBit Ethernet](#gigabit-ethernet)
   * [USB OTG](#usb-otg)
   * 2 x [I2C](#i2c)
