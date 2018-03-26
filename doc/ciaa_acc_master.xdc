@@ -22,13 +22,13 @@ set_property PACKAGE_PIN W17 [get_ports LED_ERR]
 
 
 set_property PACKAGE_PIN A12 [get_ports GPIO0]
-set_property PACKAGE_PIN B12 [get_ports GPIO0]
-set_property PACKAGE_PIN A13 [get_ports GPIO0]
-set_property PACKAGE_PIN A14 [get_ports GPIO0]
-set_property PACKAGE_PIN B14 [get_ports GPIO0]
-set_property PACKAGE_PIN A15 [get_ports GPIO0]
-set_property PACKAGE_PIN B15 [get_ports GPIO0]
-set_property PACKAGE_PIN A17 [get_ports GPIO0]
+set_property PACKAGE_PIN B12 [get_ports GPIO1]
+set_property PACKAGE_PIN A13 [get_ports GPIO2]
+set_property PACKAGE_PIN A14 [get_ports GPIO3]
+set_property PACKAGE_PIN B14 [get_ports GPIO4]
+set_property PACKAGE_PIN A15 [get_ports GPIO5]
+set_property PACKAGE_PIN B15 [get_ports GPIO6]
+set_property PACKAGE_PIN A17 [get_ports GPIO7]
 
 
 # ----------------------------------------------------------------------------
