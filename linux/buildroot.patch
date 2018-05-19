@@ -2111,6 +2111,14 @@ index 0000000..fdb5418
 +CONFIG_ARCH_HAS_SG_CHAIN=y
 +CONFIG_SBITMAP=y
 +CONFIG_VIRTUALIZATION=y
+diff --git a/board/ciaa/acc/device_table.txt b/board/ciaa/acc/device_table.txt
+new file mode 100644
+index 0000000..7767478
+--- /dev/null
++++ b/board/ciaa/acc/device_table.txt
+@@ -0,0 +1,2 @@
++/etc/init.d/S35mount    f 755 0 0 - - - - -
++/etc/init.d/S50dropbear f 755 0 0 - - - - -
 diff --git a/board/ciaa/acc/overlay_fs/etc/default/dropbear b/board/ciaa/acc/overlay_fs/etc/default/dropbear
 new file mode 100644
 index 0000000..91fc032
@@ -2121,7 +2129,7 @@ index 0000000..91fc032
 +DROPBEAR_ARGS=-B
 +
 diff --git a/board/ciaa/acc/overlay_fs/etc/init.d/S35mount b/board/ciaa/acc/overlay_fs/etc/init.d/S35mount
-new file mode 100755
+new file mode 100644
 index 0000000..0801bbe
 --- /dev/null
 +++ b/board/ciaa/acc/overlay_fs/etc/init.d/S35mount
@@ -2166,7 +2174,7 @@ index 0000000..0801bbe
 +
 +exit $?
 diff --git a/board/ciaa/acc/overlay_fs/etc/init.d/S50dropbear b/board/ciaa/acc/overlay_fs/etc/init.d/S50dropbear
-new file mode 100755
+new file mode 100644
 index 0000000..bd92d46
 --- /dev/null
 +++ b/board/ciaa/acc/overlay_fs/etc/init.d/S50dropbear
@@ -2245,7 +2253,7 @@ index 0000000..46cb724
 +	netmask 255.255.255.0
 +	gateway 192.168.1.1
 diff --git a/board/ciaa/acc/post-build.sh b/board/ciaa/acc/post-build.sh
-new file mode 100755
+new file mode 100644
 index 0000000..3ba831c
 --- /dev/null
 +++ b/board/ciaa/acc/post-build.sh
@@ -17800,10 +17808,10 @@ index 0000000..1be170d
 +sdboot=if mmcinfo; then run mmc_loadbit; echo Copying Linux from SD to RAM... && load mmc 0 ${kernel_load_address} ${kernel_image} && load mmc 0 ${devicetree_load_address} ${devicetree_image} && load mmc 0 ${ramdisk_load_address} ${ramdisk_image} && bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}; fi
 diff --git a/board/ciaa/acc/zynq-ciaa_acc.dts b/board/ciaa/acc/zynq-ciaa_acc.dts
 new file mode 100644
-index 0000000..921171d
+index 0000000..8454f8e
 --- /dev/null
 +++ b/board/ciaa/acc/zynq-ciaa_acc.dts
-@@ -0,0 +1,138 @@
+@@ -0,0 +1,147 @@
 +/*
 + * Device Tree Generator version: 1.1
 + *
@@ -17838,6 +17846,13 @@ index 0000000..921171d
 +		device_type = "memory";
 +		reg = <0x0 0x40000000>;
 +	};
++        usb_phy0: phy0@e0002000 {
++                compatible = "ulpi-phy";
++                #phy-cells = <0>;
++                reg = <0xe0002000 0x1000>;
++                view-port = <0x0170>;
++                drv-vbus;
++        };
 +};
 +
 +&can0 {
@@ -17936,6 +17951,8 @@ index 0000000..921171d
 +	phy_type = "ulpi";
 +	status = "okay";
 +	usb-reset = <&gpio0 0 0>;
++        dr_mode = "host";
++        usb-phy = <&usb_phy0>;
 +};
 +
 +&clkc {
