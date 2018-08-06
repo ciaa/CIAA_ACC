@@ -14,23 +14,23 @@ Thsi directory contains the Board Support Package for Linux over CIAA-ACC
   - buildroot.patch: Buildroot 2017.08.1 patch (working with mainstream at 2017-12-01)
 
 ### Compile buildroot
-  - Clone buildroot from oficial repo:
+
+Into this directory, execute bash script
 ```
-git clone https://github.com/buildroot/buildroot.git
+bash make-buildroot.sh
 ```
-  - Checkout right version:
+
+Enter buildroot-2017.08.1 directory and start build process
 ```
-git checkout 2017.08.1
-```
-  - Apply patch
-```
-git apply <path/to/buildroot.patch>
-```
-  - Configure, customize and make
-```
-make zynq_ciaa_acc_defconfig
-make menuconfig
+cd buildroot-2017.08.1
 make
 ```
+
+If you need to customize image do
+```
+make menuconfig
+```
+
+Select packages or change configuration and rerun `make`
 
 The build process put all SDcard contents in `output/images/sd`. Copy this to a blank FAT32 SD and insert in microSD card slot from CIAA-ACC. Reboot.
