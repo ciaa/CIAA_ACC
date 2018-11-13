@@ -376,9 +376,17 @@ Connected to PS.
 
 ### JTAG/Debug
 
-* UART0, connected to PS.
+* UART0, connected to PS (J8).
 * Implemented as a USB-to-UART bridge with a LPC11U35 (U17).
 * Is automatically recognized in GNU/Linux and Windows 10 (driver for other Windows version not found yet).
+
+With the factory default LPC11U35 firmware, the board appears in a PC as a mass storage device called **CRP DISABLD**.
+The file *firmware.bin* must be deleted and replaced by (*dap_cdc.bin*)[../bin/dap_cdc.bin] (obtained from the repo (CMSIS-DAP and CDC firmware for LPC11U35)[github.com/martinribelotta/cmsis_dap_cdc]).
+After a reconnection, a new serial port must appears.
+
+NOTE:** we detected that this procedure (change *firmware.bin* by *cdc_dap.bin*) do not work on Linux machines, so try in a Windows.
+
+If you want to change again the firmare, put a Jumper in JP3 (placed between the micro USB connectors).
 
 ### JTAG Header
 
@@ -455,3 +463,9 @@ section *Connecting to a Hardware Target Using hw_server*.
 |      |           | HB21 | 374.1     |
 |      |           | CLK2 | 374.2     |
 |      |           | CLK3 | 374.15    |
+
+## Troubleshootings
+
+* My CIAA-ACC board appears as a mass storage device called **CRP DISABLD** when connected to J8.
+  * Check that jumper in JP3 is removed.
+  * If is a new board, read [JTAG/Debug](#jtagdebug) to change the default LPC11U35 firmware.
