@@ -314,16 +314,16 @@ The connections between the HPC connector at J5 and AP SoC U1 implements:
 | GBTCLK0_M2C_N  | D5      | R5       |
 | DP0_M2C_P      | C6      | Y4       |
 | DP0_M2C_N      | C7      | Y3       |
-| DP0_C2M_P      | C2      | W2       |
-| DP0_C2M_N      | C3      | W3       |
+| DP0_C2M_P      | A26     | W1       |
+| DP0_C2M_N      | A27     | W2       |
 | DP1_M2C_P      | A2      | V4       |
 | DP1_M2C_N      | A3      | V3       |
 | DP1_C2M_P      | A22     | U2       |
 | DP1_C2M_N      | A23     | U1       |
 | DP2_M2C_P      | A6      | T4       |
 | DP2_M2C_N      | A7      | T3       |
-| DP2_C2M_P      | A22     | U2       |
-| DP2_C2M_N      | A23     | U1       |
+| DP2_C2M_P      | C2      | R2       |
+| DP2_C2M_N      | C3      | R1       |
 
 ##### Misc
 
