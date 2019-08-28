@@ -7,7 +7,7 @@
 ## Resources
 
 * [GitHub Repositorie](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC)
-* [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.1.pdf)
+* [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.4.pdf)
 * [Master Constraints File](ciaa_acc_master.xdc)
 
 ## Overview
@@ -469,3 +469,5 @@ section *Connecting to a Hardware Target Using hw_server*.
 * My CIAA-ACC board appears as a mass storage device called **CRP DISABLD** when connected to J8.
   * Check that jumper in JP3 is removed.
   * If is a new board, read [JTAG/Debug](#jtagdebug) to change the default LPC11U35 firmware.
+* My CIAA-ACC board doesn't boot.
+  * Check JP4, must be a 20 K resistor in 2-3 position.   
