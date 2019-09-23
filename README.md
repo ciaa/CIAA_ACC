@@ -1,7 +1,7 @@
 # CIAA ACC Support
 
-Here you will find [documentation](doc), [demos](demos) and [basic support](bdf) for this board,
-developed by [INTI](http://www.inti.gob.ar/) - [CMNB](http://www.inti.gob.ar/microynanoelectronica/) and Emtech 
+Here you will find [documentation](doc), [demos](demos) and [FPGA support files](fpga_support_files) for this board,
+developed by [INTI](http://www.inti.gob.ar/) - [CMNB](http://www.inti.gob.ar/microynanoelectronica/) and [Emtech](www.emtech.com.ar) 
 as part of the [CIAA project](http://www.proyecto-ciaa.com.ar/).
 
 ## License

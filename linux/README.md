@@ -10,8 +10,10 @@ Thsi directory contains the Board Support Package for Linux over CIAA-ACC
   - bsp/u-boot.patch: U-Boot xilinx-v2017.3
   - bsp/u-boot_defconfig: Defconfig for u-boot compilation
   - bsp/uEnv.txt: U-Boot evironment (fpga and kernel load script)
-  - bsp/zynq-ciaa_acc.dts: Devicetree for linux build
+  - bsp/zynq-ciaa_acc.dts: Devicetree for linux build.  
   - buildroot.patch: Buildroot 2017.08.1 patch (working with mainstream at 2017-12-01)
+
+Note: In zynq-ciaa_acc.dts device tree file remember to change "fclk-enable = 0x..." to the appropriate value If using PS to PL clocks fclx0,1, 2 & 3. The individual fclk enables are mapped to bits 3:0.
 
 ### Compile buildroot
 

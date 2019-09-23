@@ -6,9 +6,9 @@
 
 ## Resources
 
-* [GitHub Repositorie](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC)
+* [Hardware GitHub Repository](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC)
 * [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.4.pdf)
-* [Master Constraints File](ciaa_acc_master.xdc)
+* [FPGA Constraint Files](../fpga_support_files/constraints/)
 
 ## Overview
 
