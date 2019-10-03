@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<board schema_version="2.1" vendor="CIAA Project" name="ciaa-acc" display_name="CIAA ACC" url="http://www.proyecto-ciaa.com.ar/devwiki/doku.php?id=desarrollo:ciaa_acc:ciaa_acc_inicio" preset_file="preset.xml">
+<board schema_version="2.0" vendor="CIAA-Project" name="ciaa-acc" display_name="CIAA ACC" url="http://www.proyecto-ciaa.com.ar/devwiki/doku.php?id=desarrollo:ciaa_acc:ciaa_acc_inicio" preset_file="preset.xml">
   <images>
     <image name="ciaa_acc.jpg" display_name="CIAA ACC BOARD" sub_type="board">
       <description>CIAA ACC Board File Image</description>
