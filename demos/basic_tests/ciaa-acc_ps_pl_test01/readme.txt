@@ -1,7 +1,20 @@
-Important note: Make sure to install CIAA-ACC board files before opening the project
-
 This project implements a simple design that includes the PS and PL with 
  an AXI Interconnect and 2 slaves, as well as some external logic blocks.
+
+================================================================================
+
+Important Note! Make sure to install CIAA-ACC board files before opening the project
+
+The board files are in the main Support file in the project, but also icluded in aux_stuff for the demo.
+Copy to <Vivado Install>/data/boards/board_files/
+
+If you don't do hat you need to select "xc7z030fbg676-2" for the part number
+
+You will need SW running on the PS to access the peripheral slaves. Refer to the 
+ Linux directory to set up Linux on and SD and boot the PS on the FPGA in the 
+ CIAA-ACC.
+
+---------
 
 ================================================================================
 Slave 0
