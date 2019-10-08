@@ -8,7 +8,7 @@
 
 * [GitHub Repositorie](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC)
 * [Schematic](https://github.com/ciaa/Hardware/tree/master/PCB/ACC/CIAA_ACC/output_files/ciaa_acc_sch_v1.4.pdf)
-* [Master Constraints File](ciaa_acc_master.xdc)
+* [Master Constraints File](../hw/ciaa_acc_master.xdc)
 
 ## Overview
 
