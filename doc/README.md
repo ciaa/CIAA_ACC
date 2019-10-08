@@ -1,6 +1,6 @@
 # CIAA ACC Hardware User guide
 
-![CIAA ACC](../bdf/ciaa-acc/1.1/ciaa_acc.jpg)
+![CIAA ACC](../support/bdf/ciaa-acc/1.1/ciaa_acc.jpg)
 
 ![Block diagram](images/block.png)
 
@@ -381,7 +381,7 @@ Connected to PS.
 * Is automatically recognized in GNU/Linux and Windows 10 (driver for other Windows version not found yet).
 
 With the factory default LPC11U35 firmware, the board appears in a PC as a mass storage device called **CRP DISABLD**.
-The file *firmware.bin* must be deleted and replaced by [*dap_cdc.bin*](../bin/dap_cdc.bin) (obtained from the repo [CMSIS-DAP and CDC firmware for LPC11U35](https://github.com/martinribelotta/cmsis_dap_cdc)).
+The file *firmware.bin* must be deleted and replaced by [*dap_cdc.bin*](../support/lpc/dap_cdc.bin) (obtained from the repo [CMSIS-DAP and CDC firmware for LPC11U35](https://github.com/martinribelotta/cmsis_dap_cdc)).
 After a reconnection, a new serial port must appears.
 
 **NOTE:** we detected that this procedure (change *firmware.bin* by *cdc_dap.bin*) do not work on Linux machines, so try in a Windows.
