@@ -1,6 +1,6 @@
 # CIAA ACC
 
-Here you will find [documentation](doc), [demos](demos) and more resources([Hardware](hw), [Linux](linux) and [Support](support)) to work with this board, developed by [INTI](http://www.inti.gob.ar/) - [Micro and Nanotechnologies](https://www.inti.gob.ar/areas/desarrollo-tecnologico-e-innovacion/areas-de-conocimiento/micro-y-nanotecnologias) and [Emtech](https://www.emtech.com.ar/) as part of the [CIAA project](http://www.proyecto-ciaa.com.ar/).
+Here you will find [documentation](doc), [demos](demos) and more resources ([Hardware](hw), [Linux](linux) and [Support](support)) to work with this board, developed by [INTI](http://www.inti.gob.ar/) - [Micro and Nanotechnologies](https://www.inti.gob.ar/areas/desarrollo-tecnologico-e-innovacion/areas-de-conocimiento/micro-y-nanotecnologias) and [Emtech](https://www.emtech.com.ar/) as part of the [CIAA project](http://www.proyecto-ciaa.com.ar/).
 
 ## License
 
