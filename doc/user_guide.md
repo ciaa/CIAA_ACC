@@ -406,6 +406,10 @@ Connected to PS.
 *Vivado Design Suite User Guide - Programming and Debugging (UG908)*,
 section *Connecting to a Hardware Target Using hw_server*.
 
+Following, a Figure about how to connect a JTAG-HS3 programmer from Digikey (or another 14 pins Xilinx JTAG header compatible).
+
+![JTAG HS3 connection to J6](images/HS3.png)
+
 ## Annex A: simulated propagation times in the FMC connector
 
 | LPC  | Time (ps) | HPC  | Time (ps) | GBT         | Time (ps) |
